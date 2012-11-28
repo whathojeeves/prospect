@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>My Work</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="./css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+
+      .well {
+        margin-bottom: 0px;
+      }
+    </style>
+    <link href="./css/bootstrap-responsive.css" rel="stylesheet">
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="./js/jquery-1.7.2.min.js"><\/script>')</script>
+
+<script src="./js/bootstrap.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/handlebars-1.0.0.beta.6.js"></script>
+<script src="./js/ember-1.0.0-pre.2.js"></script>
+<script src="./js/gmaps.js"></script>
+<script src="./js/myCode.js"></script>
+    
+</head>
+
+<body>
+    <div class="container">
+        <div class="hero-unit">
+            <h1> Prospect </h1>
+        </div>
+        <script type="text/x-handlebars" data-template-name="application">
+
+            <div class="row">
+                <div class="span4">
+                    
+                    {{view ProspectApp.SearchTextField placeholder="Where are you?" valueBinding = "ProspectApp.tweetController.locQuery"}}
+                    
+                    <button {{action "loadTweets" target="ProspectApp.tweetController"}}> Hit it! 
+                    </button>
+                </div>
+
+                <div class="span8 pull-right">
+                    
+                        {{#each ProspectApp.tweetController}}
+                            <div class="well well-small">
+                                <img {{bindAttr src="display_img"}} class="img-rounded"/>
+                                <span><strong>{{screen_name}}</strong></span>
+                                <p>{{text}}</p>
+                                <h6>{{coord}}</h6>
+                            </div> 
+                        {{/each}}
+                    
+                        <button {{action "loadTweets" target="ProspectApp.tweetController"}}> Load More
+                        </button>
+                </div>
+            </div>
+        </script>
+
+</body>
+
+</html>
