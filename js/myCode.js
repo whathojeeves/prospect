@@ -11,7 +11,7 @@ ProspectApp.Router = Ember.Router.extend({
       route: '/'
     })
   })
-})
+});
 
 /* Models */
 
@@ -20,7 +20,7 @@ ProspectApp.Tweet = Ember.Object.extend({
   display_img : null,
   screen_name : null,
   text        : null,
-  coord       : null 
+  coord       : null
 });
 
 /* Views */
@@ -44,7 +44,7 @@ ProspectApp.tweetController = Ember.ArrayController.create({
 
   var me = this;
 
-  var queries = "nowplaying"
+  var queries = "nowplaying";
   var loc = me.get('locQuery');
   var nextUrl = me.get('nextPage');
   var locLat = '';
@@ -83,7 +83,7 @@ ProspectApp.tweetController = Ember.ArrayController.create({
   $.ajax({
 
   url : url,
-  type : "GET", 
+  type : "GET",
   dataType: 'jsonp',
   success : function(data){
 
@@ -95,7 +95,7 @@ ProspectApp.tweetController = Ember.ArrayController.create({
 
     var sResults = data.results;
     //$(data).each(function(index,value){
-    $(sResults).each(function(index,value){  
+    $(sResults).each(function(index,value){
 
       console.log(value);
 
@@ -113,7 +113,7 @@ ProspectApp.tweetController = Ember.ArrayController.create({
       });
 
       me.pushObject(entry);
-    })
+    });
   },
 
   error : function(error, textStatus, jqXHR){
