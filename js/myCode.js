@@ -64,42 +64,21 @@ ProspectApp.tweetController = Ember.ArrayController.create({
       console.log(locLat);
       console.log(locLong);
 
-      /*var url = 'http://api.twitter.com/1/statuses/user_timeline.json';
-  url += '?screen_name=%@&callback=?'.fmt(me.get("username"));*/
-  var url = 'http://search.twitter.com/search.json';
+  /* Cleaned up URL generation */    
+
+  var url = '';
 
   if(nextUrl)
   {
+    url = 'http://search.twitter.com/search.json';
     url += nextUrl;
   }
   else
   {
-    url += '?q=%23' + queries + '&geocode=' + locLat + ',' + locLong + ',100km&callback=?';
+    url = 'http://search.twitter.com/search.json?q={queries}&geocode={lat},{lng},{radius}&callback=?'; //Template URL
+    var radius= '100km';
+    url = url.replace('{queries}', queries).replace('{lat}', locLat).replace('{lng}',locLong).replace('{radius}',radius);
   }
-  //var url = 'http://search.twitter.com/search.json'+'?q=%23' + queries + '&geocode=' + locLat + ',' + locLong + ',100km&callback=?';
-
-
-
-  // --------------------------------------
-  // Two other ways to do this. You check this in the console logs
-  
-  // 1
-  var dist= '100km';
-
-  var url_1 = 'http://search.twitter.com/search.json?q={queries}&geocode={lat},{lng},{distance}&callback=?'; //Template URL
-  var final_url_1 = url.replace('{queries}', queries).replace('{lat}', locLat).replace('{lng}',locLong).replace('{distance}',dist);
-  console.log('final_url_1: '+final_url_1);
- 
-  // 2
-  var params = {
-    q: queries,
-    geocode: [locLat, locLong,dist].join(","),
-    callback: ''
-  };
-  var str = $.param(params);
-  var final_url_2 = url + str; //Appending params to original base URL
-  console.log('final_url_2: '+final_url_2);
-  // --------------------------------------
 
   console.log(url);
 
