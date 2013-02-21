@@ -27,6 +27,8 @@ ProspectApp.Tweet = Ember.Object.extend({
 
 ProspectApp.SearchTextField = Ember.TextField.extend({
 
+  tagName : 'input',
+
   insertNewLine : function(){
     ProspectApp.tweetController.loadTweets();
   }
@@ -53,11 +55,11 @@ ProspectApp.tweetController = Ember.ArrayController.create({
   console.log(loc);
 
   var geocoder = new google.maps.Geocoder();
-  geocoder.geocode( { 'address': loc}, function(results, status) {
+  
+  geocoder.geocode( { 'address': loc},  function(results, status) {
 
     if (status == google.maps.GeocoderStatus.OK) {
 
-      //console.log(results[0].geometry.location);
       locLat = (results[0].geometry.location).lat();
       locLong = (results[0].geometry.location).lng();
 

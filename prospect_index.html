@@ -30,7 +30,7 @@
 <script src="./js/bootstrap.min.js"></script>
 <script src="./js/handlebars-1.0.0.beta.6.js"></script>
 <script src="./js/ember-1.0.0-pre.2.js"></script>
-<script src="./js/gmaps.js"></script>
+<script src="./js/gmaps.js"></script> 
 <script src="./js/myCode.js"></script>
     
 </head>
@@ -43,12 +43,15 @@
         <script type="text/x-handlebars" data-template-name="application">
 
             <div class="row">
-                <div class="span4">
-                    
+                <div class="span4 offset1">
+                    <form name="main_form">
+                    <fieldset>
                     {{view ProspectApp.SearchTextField placeholder="Where are you?" valueBinding = "ProspectApp.tweetController.locQuery"}}
                     
-                    <button {{action "loadTweets" target="ProspectApp.tweetController"}}> Hit it! 
+                    <button type="submit" {{action "loadTweets" target="ProspectApp.tweetController"}}> Hit it! 
                     </button>
+                    </fieldset>
+                    </form>
                 </div>
 
                 <div class="span8 pull-right">
